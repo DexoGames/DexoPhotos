@@ -8,8 +8,10 @@
  * then run `npm run photos`.
  *
  * For every source image this produces (in public/photos/<group>/):
- *   <name>_l.webp  — max 2000px, quality 82 (lightbox)
+ *   <name>_l.webp  — max 2000px, quality 78 (lightbox)
  *   <name>_t.webp  — max 800px,  quality 72 (grid / hero)
+ * Both are encoded at webp `effort: 6` — slower to encode (build-time only)
+ * but smaller for the same quality, so the lightbox preview loads faster.
  * plus a tiny inline blur placeholder. Gallery images are written to
  * src/photos.json and the featured set to src/featured.json, both sorted by
  * the EXIF "date taken" (falls back to the file's modified time).
@@ -92,17 +94,25 @@ async function processGroup(group, prevById, expectedOutputs, counters) {
     } catch {
       /* no exif — fall back to mtime */
     }
-    if (!takenAt) takenAt = st.mtime;
+    if (!takenAt) {
+      // No embedded date at all: fall back to the file's mtime (i.e. whenever
+      // it was copied to disk). Warn loudly — a silent fallback here is exactly
+      // what once made freshly-copied files all show today's date.
+      takenAt = st.mtime;
+      counters.noDate++;
+      console.warn(`\n  ⚠ ${id}: no EXIF/XMP date, using file mtime (${st.mtime.toISOString()})`);
+      process.stdout.write(`  ${id} ... `);
+    }
 
     await img
       .clone()
       .resize({ width: LARGE, height: LARGE, fit: 'inside', withoutEnlargement: true })
-      .webp({ quality: 82 })
+      .webp({ quality: 78, effort: 6 })
       .toFile(largePath);
     await img
       .clone()
       .resize({ width: THUMB, height: THUMB, fit: 'inside', withoutEnlargement: true })
-      .webp({ quality: 72 })
+      .webp({ quality: 72, effort: 6 })
       .toFile(thumbPath);
     const tiny = await img.clone().resize(24).blur(1).webp({ quality: 40 }).toBuffer();
 
@@ -126,7 +136,7 @@ async function processGroup(group, prevById, expectedOutputs, counters) {
 const byDateDesc = (a, b) => new Date(b.takenAt) - new Date(a.takenAt);
 
 const expectedOutputs = new Set();
-const counters = { processed: 0, skipped: 0 };
+const counters = { processed: 0, skipped: 0, noDate: 0 };
 
 // --- gallery ---------------------------------------------------------------
 const galleryFile = path.join(ROOT, 'src', 'photos.json');
@@ -159,3 +169,9 @@ console.log(
   `\n${gallery.length} gallery + ${featured.length} featured photos ` +
     `(${counters.processed} processed, ${counters.skipped} unchanged) -> src/photos.json, src/featured.json`
 );
+if (counters.noDate > 0) {
+  console.warn(
+    `⚠ ${counters.noDate} image(s) had no embedded date and fell back to file mtime — ` +
+      `check the warnings above; their gallery order may be wrong.`
+  );
+}
