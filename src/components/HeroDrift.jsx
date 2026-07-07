@@ -163,7 +163,7 @@ export default function HeroDrift() {
   useEffect(() => {
     const PANEL_VW = 0.5;
     const PANEL_MAX = 760;
-    const GAP = 48;
+    const GAP = -120;
     const check = () => {
       const w = window.innerWidth;
       if (w < 1000) {
