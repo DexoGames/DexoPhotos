@@ -1,4 +1,4 @@
-const LINE = 'LIVE MUSIC ✦ STREET ✦ ABSTRACT ✦ OTHER ✦ DM @DEXO.PHOTOS TO BOOK ✦ ';
+const LINE = 'LIVE MUSIC ✦ STREET ✦ ABSTRACT ✦ MORE ✦ @DEXO.PHOTOS ✦ ';
 
 export default function Marquee({ reverse = false }) {
   const text = LINE.repeat(4);
