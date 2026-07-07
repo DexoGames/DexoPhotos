@@ -1,0 +1,4 @@
+node_modules/
+dist/
+# generated web-optimised images (rebuilt from photos/ by `npm run photos`)
+public/photos/
