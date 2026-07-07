@@ -89,7 +89,17 @@ async function processGroup(group, prevById, expectedOutputs, counters) {
       // so it silently returned undefined for those files and we fell back to
       // the file's mtime (today, i.e. whenever it was copied to disk) instead
       // of the real date taken.
-      const ex = await exifr.parse(full, { xmp: true, gps: false, icc: false });
+      //
+      // We read the WHOLE file (readFile + pass a Buffer, which disables
+      // exifr's chunked reader) before parsing. exifr's default chunked file
+      // reader only pulls the first slice of the file and keeps requesting more
+      // as needed — but for large PNGs whose XMP chunk sits deep in the file it
+      // could stop early and miss the date. How much it read turned out to be
+      // filesystem-dependent, so it worked locally yet silently fell back to
+      // mtime on the CI build server (giving every such photo the deploy date).
+      // Handing exifr the full buffer removes that variability entirely.
+      const buf = await readFile(full);
+      const ex = await exifr.parse(buf, { xmp: true, gps: false, icc: false });
       takenAt = ex?.DateTimeOriginal || ex?.CreateDate || ex?.DateCreated || ex?.ModifyDate || null;
     } catch {
       /* no exif — fall back to mtime */
