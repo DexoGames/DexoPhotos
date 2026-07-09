@@ -15,6 +15,10 @@ function PhotoCard({ photo, index, span, showCategory, onOpen }) {
         type="button"
         className="card-btn"
         onClick={() => onOpen(index)}
+        // Warm the full-size image while the user hovers/tabs, so the lightbox
+        // usually has it ready by the time they click.
+        onPointerEnter={() => { new Image().src = photo.large; }}
+        onFocus={() => { new Image().src = photo.large; }}
         aria-label={`Open ${CATEGORY_LABELS[photo.category]} photo, taken ${fmtDate(photo.takenAt)}`}
       >
         <div
@@ -24,7 +28,7 @@ function PhotoCard({ photo, index, span, showCategory, onOpen }) {
             backgroundImage: `url(${photo.placeholder})`,
           }}
         >
-          <img className="card-base" src={photo.thumb} alt="" loading="lazy" />
+          <img className="card-base" src={photo.thumb} alt="" loading="lazy" decoding="async" />
           <img className="card-split card-split--r" src={photo.thumb} alt="" aria-hidden="true" loading="lazy" />
           <img className="card-split card-split--c" src={photo.thumb} alt="" aria-hidden="true" loading="lazy" />
         </div>

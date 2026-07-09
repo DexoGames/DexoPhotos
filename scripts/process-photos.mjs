@@ -8,7 +8,7 @@
  * then run `npm run photos`.
  *
  * For every source image this produces (in public/photos/<group>/):
- *   <name>_l.webp  — max 2000px, quality 78 (lightbox)
+ *   <name>_l.webp  — max 1600px, quality 76 (lightbox)
  *   <name>_t.webp  — max 800px,  quality 72 (grid / hero)
  * Both are encoded at webp `effort: 6` — slower to encode (build-time only)
  * but smaller for the same quality, so the lightbox preview loads faster.
@@ -31,8 +31,14 @@ const OUT = path.join(ROOT, 'public', 'photos');
 const CATEGORIES = ['live-music', 'street', 'abstract', 'other'];
 const FEATURED = 'featured';
 const EXTS = new Set(['.jpg', '.jpeg', '.png', '.tif', '.tiff', '.webp', '.avif']);
-const LARGE = 2000;
+const LARGE = 1600;
 const THUMB = 800;
+const LARGE_Q = 76;
+const THUMB_Q = 72;
+// Bump when encode params (sizes/quality) change so a re-run regenerates
+// outputs for sources that are otherwise unchanged (the mtime check alone
+// wouldn't notice a params-only change).
+const PIPELINE_VERSION = 2;
 
 const slugify = (s) =>
   s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '') || 'photo';
@@ -68,7 +74,13 @@ async function processGroup(group, prevById, expectedOutputs, counters) {
     expectedOutputs.add(thumbPath);
 
     const prev = prevById.get(id);
-    if (prev && prev.srcMtimeMs === st.mtimeMs && existsSync(largePath) && existsSync(thumbPath)) {
+    if (
+      prev &&
+      prev.srcMtimeMs === st.mtimeMs &&
+      prev.pipelineVersion === PIPELINE_VERSION &&
+      existsSync(largePath) &&
+      existsSync(thumbPath)
+    ) {
       entries.push(prev);
       counters.skipped++;
       continue;
@@ -117,12 +129,12 @@ async function processGroup(group, prevById, expectedOutputs, counters) {
     await img
       .clone()
       .resize({ width: LARGE, height: LARGE, fit: 'inside', withoutEnlargement: true })
-      .webp({ quality: 78, effort: 6 })
+      .webp({ quality: LARGE_Q, effort: 6 })
       .toFile(largePath);
     await img
       .clone()
       .resize({ width: THUMB, height: THUMB, fit: 'inside', withoutEnlargement: true })
-      .webp({ quality: 72, effort: 6 })
+      .webp({ quality: THUMB_Q, effort: 6 })
       .toFile(thumbPath);
     const tiny = await img.clone().resize(24).blur(1).webp({ quality: 40 }).toBuffer();
 
@@ -136,6 +148,7 @@ async function processGroup(group, prevById, expectedOutputs, counters) {
       thumb: `/photos/${group}/${base}_t.webp`,
       placeholder: `data:image/webp;base64,${tiny.toString('base64')}`,
       srcMtimeMs: st.mtimeMs,
+      pipelineVersion: PIPELINE_VERSION,
     });
     counters.processed++;
     console.log('ok');

@@ -59,6 +59,12 @@ export default function CAImage({ photo }) {
   const curtainsRef = useRef(null);
   const [failed, setFailed] = useState(false);
   const [box, setBox] = useState(null);
+  // The WebGL canvas paints its image region black until the (large) texture
+  // has downloaded and uploaded. So we keep the canvas hidden and show the
+  // already-cached thumb underneath until `loaded` flips, then fade the
+  // chromatic-aberration effect in over it — no black flash, instant preview.
+  const [loaded, setLoaded] = useState(false);
+  useEffect(() => setLoaded(false), [photo.id]);
 
   const reducedMotion =
     typeof window !== 'undefined' &&
@@ -131,22 +137,38 @@ export default function CAImage({ photo }) {
         className="lb-img glitch-in"
         src={photo.large}
         alt=""
-        style={{ backgroundImage: `url(${photo.placeholder})` }}
+        style={{ backgroundImage: `url(${photo.thumb}), url(${photo.placeholder})` }}
         onClick={(e) => e.stopPropagation()}
       />
     );
   }
 
   return (
-    <div className="lb-gl" ref={stageRef} onClick={(e) => e.stopPropagation()}>
+    <div
+      className={`lb-gl${loaded ? ' ca-loaded' : ''}`}
+      ref={stageRef}
+      onClick={(e) => e.stopPropagation()}
+    >
       {box && (
         <div
           key={photo.id}
           ref={planeElRef}
           className="ca-plane"
-          style={{ width: box.w, height: box.h, backgroundImage: `url(${photo.placeholder})` }}
+          // Cached thumb first (sharp, instant), tiny blur placeholder as
+          // ultimate fallback — visible until the large texture fades in.
+          style={{
+            width: box.w,
+            height: box.h,
+            backgroundImage: `url(${photo.thumb}), url(${photo.placeholder})`,
+          }}
         >
-          <img src={photo.large} alt="" data-sampler="uTex" crossOrigin="anonymous" />
+          <img
+            src={photo.large}
+            alt=""
+            data-sampler="uTex"
+            crossOrigin="anonymous"
+            onLoad={() => setLoaded(true)}
+          />
         </div>
       )}
     </div>

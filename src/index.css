@@ -552,6 +552,12 @@ a {
   inset: 0;
   pointer-events: none;
   z-index: 1; /* above the .ca-plane placeholder background */
+  opacity: 0; /* hidden until the large texture loads — the canvas is black
+                 until then, so we show the thumb underneath first */
+  transition: opacity 0.4s ease;
+}
+.lb-gl.ca-loaded canvas {
+  opacity: 1;
 }
 .ca-plane {
   position: relative;
