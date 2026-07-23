@@ -1,17 +1,5 @@
 [
   {
-    "id": "street/dsc01865",
-    "category": "street",
-    "takenAt": "2026-07-14T21:27:52.000Z",
-    "width": 4618,
-    "height": 3079,
-    "large": "/photos/street/dsc01865_l.webp",
-    "thumb": "/photos/street/dsc01865_t.webp",
-    "placeholder": "data:image/webp;base64,UklGRm4AAABXRUJQVlA4IGIAAADwAwCdASoYABAAPu1kqk2ppaQiMAgBMB2JQBOgBDpaAJgGmUr8P6G0AP7yqPxwFfmEky8RajZkTZgLPN3LDOjvxJ+rQ2rIsCUJN+0obksLcpflAHmRhMxavD09IBU1bb0AAA==",
-    "srcMtimeMs": 1784504069611.3533,
-    "pipelineVersion": 2
-  },
-  {
     "id": "street/dsc01862",
     "category": "street",
     "takenAt": "2026-07-14T21:27:47.000Z",
@@ -381,18 +369,6 @@
     "thumb": "/photos/live-music/dsc00589_t.webp",
     "placeholder": "data:image/webp;base64,UklGRnQAAABXRUJQVlA4IGgAAAAQBACdASoYABAAPu1kq04ppaQiMAgBMB2JZwAAXBiQBGL1zoZTNZpakAD+8Q5vcRDeoA8tmQgSaQsiPdcSNnnim0GRUof04Fe5Z/gzjQDN4OGZ9lMkvIyOrFNQEl8jDv6kkYDc/rZAAA==",
     "srcMtimeMs": 1783213328692.5222,
-    "pipelineVersion": 2
-  },
-  {
-    "id": "live-music/dsc00574",
-    "category": "live-music",
-    "takenAt": "2026-07-04T14:28:52.000Z",
-    "width": 6000,
-    "height": 4000,
-    "large": "/photos/live-music/dsc00574_l.webp",
-    "thumb": "/photos/live-music/dsc00574_t.webp",
-    "placeholder": "data:image/webp;base64,UklGRngAAABXRUJQVlA4IGwAAADwAwCdASoYABAAPu1kqk4ppaQiMAgBMB2JQAALfizsqvf+QsgFDgxYAP7mo4VFE7e75MeuQfLJlxmdd6V4drO2y2UuGZI6uX+5n+G9FycPNxZ9L4uitTQR7xlle+pO0kGIdeeQ9qUa+d2AAAA=",
-    "srcMtimeMs": 1783213320900.3125,
     "pipelineVersion": 2
   },
   {
