@@ -1,5 +1,65 @@
 [
   {
+    "id": "street/dsc02051",
+    "category": "street",
+    "takenAt": "2026-07-16T10:29:01.000Z",
+    "width": 2327,
+    "height": 2327,
+    "large": "/photos/street/dsc02051_l.webp",
+    "thumb": "/photos/street/dsc02051_t.webp",
+    "placeholder": "data:image/webp;base64,UklGRowAAABXRUJQVlA4IIAAAAAwBQCdASoYABgAPu1qsFCppaSiqAqpMB2JYwC90BEJqls8mtYNO74fVteiP5c/PGAIcAD+8c/rtFQAHg1ZW37RiDHsInD7DX8OZeCDGBL/iCoK2pOhufNUswsqPOpHQa+SvqJtusmL8fotsIKRkB5BnNDDGAq/txVwaALe1XAAAA==",
+    "srcMtimeMs": 1786370311372.3882,
+    "pipelineVersion": 2
+  },
+  {
+    "id": "street/dsc01994",
+    "category": "street",
+    "takenAt": "2026-07-15T11:49:04.000Z",
+    "width": 6000,
+    "height": 4000,
+    "large": "/photos/street/dsc01994_l.webp",
+    "thumb": "/photos/street/dsc01994_t.webp",
+    "placeholder": "data:image/webp;base64,UklGRpAAAABXRUJQVlA4IIQAAAAQBACdASoYABAAPu1oqk6ppiQiMAgBMB2JbACdAGtoiwlT+3DM6c+JgADhtLO50d9KX3Gjkdi/jI68cvKKeVv4gV3VkYf4GLng/9+iwsnJpucSTssg3emMzAPPv19LgJMSiGITV9G9RD2pwQ3czQvPY883wdQpsdK43zYDAAaygoRiAAA=",
+    "srcMtimeMs": 1786354383890.6455,
+    "pipelineVersion": 2
+  },
+  {
+    "id": "street/dsc01973",
+    "category": "street",
+    "takenAt": "2026-07-15T11:26:52.000Z",
+    "width": 4000,
+    "height": 6000,
+    "large": "/photos/street/dsc01973_l.webp",
+    "thumb": "/photos/street/dsc01973_t.webp",
+    "placeholder": "data:image/webp;base64,UklGRuYAAABXRUJQVlA4INoAAACQBgCdASoYACQAPuFepU2opSOiNVv4ARAcCWIAuKgYSLjN1vHq/fyUzxqQBcdpYFlgzdqt+kRZulA8zrLAAPz/0JzGgHLjsQTGpt26NuZ7mz+WErswXXI4aL5ZX8bpaA4DDXKaAzk+JLEP5x6jzGnLnBVbK2aWVp6lWMAVkuhx8m0UPqnSLV+/oBxkFGAW22e32ocpLNjlPN4SZlpuPHSbx6e7oW8s5L2tTppiU/ermxv5yY8WSdQcPyXFP/FpV7rbiUBz+78CTEFk1XS73LRRfNqOfwIBOgAAAA==",
+    "srcMtimeMs": 1786354367239.2507,
+    "pipelineVersion": 2
+  },
+  {
+    "id": "other/dsc01966",
+    "category": "other",
+    "takenAt": "2026-07-15T11:06:18.000Z",
+    "width": 6000,
+    "height": 4000,
+    "large": "/photos/other/dsc01966_l.webp",
+    "thumb": "/photos/other/dsc01966_t.webp",
+    "placeholder": "data:image/webp;base64,UklGRoIAAABXRUJQVlA4IHYAAABQBACdASoYABAAPu1kqk4ppaQiMAgBMB2JbACdMoADQJZfpj/+NQPvf4cAAP7ypC+ak3UMmWyVSlRU+e9U/utppgsEeJieHn/Q/EeW5ww2O0oEgCBT6kwH5DgsZPzVogG2JMV6IGZBvM8yEx2oIGE3RLkq+gAA",
+    "srcMtimeMs": 1786354350780.297,
+    "pipelineVersion": 2
+  },
+  {
+    "id": "street/dsc01952",
+    "category": "street",
+    "takenAt": "2026-07-15T09:53:38.000Z",
+    "width": 3299,
+    "height": 4949,
+    "large": "/photos/street/dsc01952_l.webp",
+    "thumb": "/photos/street/dsc01952_t.webp",
+    "placeholder": "data:image/webp;base64,UklGRtIAAABXRUJQVlA4IMYAAADwBQCdASoYACQAPulgp02pJaOiNVgIASAdCUAX6y2gNG3olvFOjElQS+wO8frThrrfIWO6Oym5AAD+3GBDzJwHOKx2Tnfjb4cn5DkJal7uaLj04vYfAkoIeF2AcYDxvMjUiKmr1wdA59/Vj5mfUv8O1nDBRf5l5G+QskxJN5Mt/Iwr3cGbFHTKeAQPxqQGV1Pj8TwQz3/gwLdLNVxd6oArfKfWA9Wjfclt8HkaWZN2klhieP6GY6QxmhMzb7hhR5qCUcgAAAA=",
+    "srcMtimeMs": 1786354336016.3862,
+    "pipelineVersion": 2
+  },
+  {
     "id": "street/dsc01862",
     "category": "street",
     "takenAt": "2026-07-14T21:27:47.000Z",
