@@ -434,6 +434,11 @@ a {
   background-size: cover;
   background-position: center;
 }
+/* <picture> only exists to offer AVIF/WebP candidates — take it out of the
+   layout so the <img> stays a direct child of .card-img and still fills it. */
+.card-img picture {
+  display: contents;
+}
 .card-base,
 .card-split {
   width: 100%;

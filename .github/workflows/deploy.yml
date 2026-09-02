@@ -24,6 +24,16 @@ jobs:
           node-version: 20
           cache: npm
       - run: npm ci
+      # public/photos is generated, not committed. Restoring it lets the photo
+      # pipeline skip every unchanged source — otherwise each deploy re-encodes
+      # all ~150 photos into six renditions (AVIF is the slow part), which is
+      # tens of minutes. The prefix restore-key means adding a photo reuses the
+      # renditions for all the others.
+      - uses: actions/cache@v4
+        with:
+          path: public/photos
+          key: photos-${{ hashFiles('photos/**', 'scripts/process-photos.mjs') }}
+          restore-keys: photos-
       - run: npm run build
       - uses: actions/upload-pages-artifact@v3
         with:

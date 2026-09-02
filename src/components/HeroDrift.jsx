@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Curtains, Plane } from 'curtainsjs';
 import featured from '../featured.json';
 import photosData from '../photos.json';
+import { texture } from '../lib/img.js';
 
 /**
  * Auto-cycling photo panel in the hero's empty right side (curtains.js).
@@ -264,7 +265,7 @@ export default function HeroDrift() {
     <div className="hero-drift" ref={wrapRef} aria-hidden="true">
       <div className="hero-drift-plane" ref={planeElRef}>
         {PICKS.map((p, i) => (
-          <img key={p.id} src={p.thumb} data-sampler={`uTex${i}`} crossOrigin="anonymous" alt="" />
+          <img key={p.id} src={texture(p)} data-sampler={`uTex${i}`} crossOrigin="anonymous" alt="" />
         ))}
       </div>
     </div>

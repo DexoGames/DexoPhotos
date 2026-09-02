@@ -1,6 +1,7 @@
 import { useCallback, useEffect } from 'react';
 import { CATEGORY_LABELS } from '../config.js';
 import { fmtDate, fmtTime } from '../lib/format.js';
+import { large } from '../lib/img.js';
 import CAImage from './CAImage.jsx';
 
 export default function Lightbox({ photos, index, setIndex, onClose }) {
@@ -29,7 +30,7 @@ export default function Lightbox({ photos, index, setIndex, onClose }) {
   useEffect(() => {
     [1, -1].forEach((d) => {
       const p = photos[(index + d + photos.length) % photos.length];
-      if (p) new Image().src = p.large;
+      if (p) new Image().src = large(p);
     });
   }, [index, photos]);
 

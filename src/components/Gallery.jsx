@@ -1,11 +1,47 @@
 import { useEffect, useRef, useState } from 'react';
 import { CATEGORIES, CATEGORY_LABELS } from '../config.js';
 import { fmtDate, fmtTime } from '../lib/format.js';
+import { large, thumb, thumbSrcSet, THUMB_SIZES } from '../lib/img.js';
+
+// The RGB-split layers only ever show on :hover / :focus-visible, so on touch
+// devices they were two extra copies of every thumb being fetched, decoded and
+// composited for nothing. Checked once at module load — a device doesn't
+// sprout a mouse mid-session.
+const CAN_HOVER =
+  typeof window === 'undefined' ||
+  window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+// Full-size images already warmed by a hover, so crossing the grid with the
+// mouse doesn't re-request them and crowd out the thumbs still loading.
+const warmed = new Set();
+const warm = (url) => {
+  if (warmed.has(url)) return;
+  warmed.add(url);
+  new Image().src = url;
+};
 
 const ROW_UNIT = 8; // grid-auto-rows px — cards span a whole number of these
 const CAPTION_H = 78; // caption + card bottom spacing, must match CSS
 
+/**
+ * The <source> pair every layer of a card shares. Using the same candidate
+ * list on the split layers as on the base image means they resolve to the
+ * URL already in cache instead of pulling a second rendition.
+ */
+function ThumbSources({ photo }) {
+  return (
+    <>
+      <source type="image/avif" srcSet={thumbSrcSet(photo, 'avif')} sizes={THUMB_SIZES} />
+      <source type="image/webp" srcSet={thumbSrcSet(photo, 'webp')} sizes={THUMB_SIZES} />
+    </>
+  );
+}
+
 function PhotoCard({ photo, index, span, showCategory, onOpen }) {
+  // The first row is above the fold on every breakpoint: load it eagerly and
+  // at high priority so the largest contentful paint isn't waiting behind the
+  // lazy-loading pass.
+  const eager = index < 3;
   return (
     <figure
       className="card"
@@ -17,8 +53,8 @@ function PhotoCard({ photo, index, span, showCategory, onOpen }) {
         onClick={() => onOpen(index)}
         // Warm the full-size image while the user hovers/tabs, so the lightbox
         // usually has it ready by the time they click.
-        onPointerEnter={() => { new Image().src = photo.large; }}
-        onFocus={() => { new Image().src = photo.large; }}
+        onPointerEnter={() => warm(large(photo))}
+        onFocus={() => warm(large(photo))}
         aria-label={`Open ${CATEGORY_LABELS[photo.category]} photo, taken ${fmtDate(photo.takenAt)}`}
       >
         <div
@@ -28,9 +64,44 @@ function PhotoCard({ photo, index, span, showCategory, onOpen }) {
             backgroundImage: `url(${photo.placeholder})`,
           }}
         >
-          <img className="card-base" src={photo.thumb} alt="" loading="lazy" decoding="async" />
-          <img className="card-split card-split--r" src={photo.thumb} alt="" aria-hidden="true" loading="lazy" />
-          <img className="card-split card-split--c" src={photo.thumb} alt="" aria-hidden="true" loading="lazy" />
+          <picture>
+            <ThumbSources photo={photo} />
+            <img
+              className="card-base"
+              data-photo={photo.id}
+              src={thumb(photo)}
+              alt=""
+              loading={eager ? 'eager' : 'lazy'}
+              fetchpriority={eager ? 'high' : 'auto'}
+              decoding="async"
+            />
+          </picture>
+          {CAN_HOVER && (
+            <>
+              <picture>
+                <ThumbSources photo={photo} />
+                <img
+                  className="card-split card-split--r"
+                  src={thumb(photo)}
+                  alt=""
+                  aria-hidden="true"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
+              <picture>
+                <ThumbSources photo={photo} />
+                <img
+                  className="card-split card-split--c"
+                  src={thumb(photo)}
+                  alt=""
+                  aria-hidden="true"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
+            </>
+          )}
         </div>
       </button>
       <figcaption className="card-cap">

@@ -1,5 +1,6 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { Curtains, Plane } from 'curtainsjs';
+import { gridSrc, large } from '../lib/img.js';
 
 /**
  * Realistic lens-style chromatic aberration via curtains.js (WebGL).
@@ -135,9 +136,9 @@ export default function CAImage({ photo }) {
     return (
       <img
         className="lb-img glitch-in"
-        src={photo.large}
+        src={large(photo)}
         alt=""
-        style={{ backgroundImage: `url(${photo.thumb}), url(${photo.placeholder})` }}
+        style={{ backgroundImage: `url(${gridSrc(photo)}), url(${photo.placeholder})` }}
         onClick={(e) => e.stopPropagation()}
       />
     );
@@ -159,11 +160,11 @@ export default function CAImage({ photo }) {
           style={{
             width: box.w,
             height: box.h,
-            backgroundImage: `url(${photo.thumb}), url(${photo.placeholder})`,
+            backgroundImage: `url(${gridSrc(photo)}), url(${photo.placeholder})`,
           }}
         >
           <img
-            src={photo.large}
+            src={large(photo)}
             alt=""
             data-sampler="uTex"
             crossOrigin="anonymous"
