@@ -30,11 +30,11 @@ export const thumbSrcSet = (photo, fmt) =>
   `${src(photo, 's', fmt)} 420w, ${src(photo, 't', fmt)} 840w`;
 
 /**
- * Rendered card width. The gallery is 3 columns inside a 1440px container,
- * 2 columns from 640px and 1 below that.
+ * Rendered card width. The gallery is 4 columns inside a 1440px container,
+ * 3 columns from 640px and 1 below that.
  */
 export const THUMB_SIZES =
-  '(min-width: 1512px) 450px, (min-width: 1024px) 31vw, (min-width: 640px) 46vw, 92vw';
+  '(min-width: 1440px) 328px, (min-width: 1080px) calc(25vw - 32px), (min-width: 672px) calc(33.333vw - 34.667px), (min-width: 641px) calc(100vw - 56px), calc(100vw - 32px)';
 
 /**
  * The lightbox feeds its image straight to a WebGL sampler, so it can't use

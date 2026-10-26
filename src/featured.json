@@ -1,5 +1,27 @@
 [
   {
+    "id": "featured/dsc05078",
+    "category": "featured",
+    "takenAt": "2026-10-22T21:49:52.000Z",
+    "width": 5333,
+    "height": 4000,
+    "base": "/photos/featured/dsc05078",
+    "placeholder": "data:image/webp;base64,UklGRnwAAABXRUJQVlA4IHAAAABQBACdASoYABIAPu1or1CppaSiqAqpMB2JYwCo9AwkvHCcxPtxtCS55tUAAP40crdnLWT+9oF/ZWEGr35ts/BrVd8UyO/is6hi7YdpRTRT9uNVqOnfO1iW7m4l17tgVXHEmRhutz/LB2e9MsFleAAA",
+    "srcHash": "6a4efa3549dc6b77",
+    "pipelineVersion": 3
+  },
+  {
+    "id": "featured/dsc05048",
+    "category": "featured",
+    "takenAt": "2026-10-22T21:47:47.000Z",
+    "width": 6000,
+    "height": 4000,
+    "base": "/photos/featured/dsc05048",
+    "placeholder": "data:image/webp;base64,UklGRm4AAABXRUJQVlA4IGIAAADQAwCdASoYABAAPu1iqU2ppaOiMAgBMB2JQBOgA9KHqeT7mCLbngAA/rYOThH3kx0N4+Yxa9YMWrLawKQreQTx0cUSuf74cyZ5XWtc2YgTBY0WuAjFzIIdlFmn3jvxSM+AAA==",
+    "srcHash": "202f92e2d607992a",
+    "pipelineVersion": 3
+  },
+  {
     "id": "featured/dsc00795",
     "category": "featured",
     "takenAt": "2026-07-04T14:59:02.000Z",
@@ -8,17 +30,6 @@
     "base": "/photos/featured/dsc00795",
     "placeholder": "data:image/webp;base64,UklGRmgAAABXRUJQVlA4IFwAAABwAwCdASoYABAAPu1kq04ppaQiMAgBMB2JaQAASSShgI5vZ8AA/rvvmKrJzUjjEoFvfaktQUwTpuqtIQTjHYDeSB4iTSlfX97rs1LbKE7yzga3AAM88z7o4j44AA==",
     "srcHash": "7ba0e4b6eb049f77",
-    "pipelineVersion": 3
-  },
-  {
-    "id": "featured/dsc00788",
-    "category": "featured",
-    "takenAt": "2026-07-04T14:58:41.000Z",
-    "width": 6000,
-    "height": 4000,
-    "base": "/photos/featured/dsc00788",
-    "placeholder": "data:image/webp;base64,UklGRoQAAABXRUJQVlA4IHgAAAAQBACdASoYABAAPu1orU6ppiSiMAgBMB2JZQC2yCFTGpenpBph45vnaAD+8qQQtSRxzAFUewpTHSmU7EatzFRR4tCsk8jYdVPfo/P0CD/qOQ6DOOUBCGeft6K2Iq9C/koQX88qcbway3b8p5NX4jmTJ+uqve8AAAA=",
-    "srcHash": "14390bac929c84a5",
     "pipelineVersion": 3
   },
   {
@@ -41,17 +52,6 @@
     "base": "/photos/featured/260610-237-original2",
     "placeholder": "data:image/webp;base64,UklGRmwAAABXRUJQVlA4IGAAAACwBACdASoYABMAPt1YpU2opSOiN/qoARAbiWYAxvQh38Ox2I93XHvOi8Qpm0ksAP72gSeFPnABotNOOrdxg1+f4Qb9vOKnH+Nh2UZWL9ZFrXbKdp3+kWO9SdEylQppXAA=",
     "srcHash": "a06e4dc486fecbb8",
-    "pipelineVersion": 3
-  },
-  {
-    "id": "featured/260610-106-original2",
-    "category": "featured",
-    "takenAt": "2026-06-10T17:46:48.160Z",
-    "width": 2560,
-    "height": 1707,
-    "base": "/photos/featured/260610-106-original2",
-    "placeholder": "data:image/webp;base64,UklGRowAAABXRUJQVlA4IIAAAAAQBACdASoYABAAPu1iqk4ppaQiMAgBMB2JbACdABnvIvlMwtIfzJm68AD+8zQKuAF7RkC9EApz9ituIvB6DxU9O3cXyQ0V2K3vpTkzeNC5HWCLNMl9fSdh/5p8QTpmQcOR53HSyl1qn0uJ+3xsyZHKVkLb+19lCY4yfAedVbGgAA==",
-    "srcHash": "b00349e4ec803845",
     "pipelineVersion": 3
   },
   {
