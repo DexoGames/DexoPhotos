@@ -128,7 +128,7 @@ export default function Gallery({ photos, allPhotos, cat, setCat, onOpen }) {
     if (!el) return;
     const ro = new ResizeObserver(() => {
       const w = el.clientWidth;
-      const cols = w >= 1024 ? 3 : w >= 640 ? 2 : 1;
+      const cols = w >= 1024 ? 4 : w >= 640 ? 3 : 1;
       const gap = w >= 640 ? 24 : 16;
       setLayout({ cols, gap, colW: (w - gap * (cols - 1)) / cols });
     });
